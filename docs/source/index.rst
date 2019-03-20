@@ -1,20 +1,12 @@
-.. Swashbuckle.AspNetCore documentation master file, created by
-   sphinx-quickstart on Fri Nov 30 12:10:47 2018.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
-Welcome to Swashbuckle.AspNetCore's documentation!
+Swashbuckle.AspNetCore
 ==================================================
+OpenAPI-based (Swagger) tools for documenting and testing API's built with ASP.NET Core.
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
-
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   
+   getting-started.rst
+   configuration.rst
+   extensibility.rst
+   cookbook.rst
+   design-first.rst
