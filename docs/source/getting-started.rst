@@ -7,56 +7,52 @@ Getting Started
 
         > dotnet add package Swashbuckle.AspNetCore
 
-    Or via Package Manager ...
+    or via Package Manager ...
 
     .. code-block:: bash
 
         > Install-Package Swashbuckle.AspNetCore
     
-2. In the ``ConfigureServices`` method of ``Startup.cs``, register the Swagger generator, defining one or more Swagger documents:
+2. In the ``ConfigureServices`` method of ``Startup.cs``, register the Swagger generator, defining one or more Swagger/OpenAPI documents:
 
-    .. code-block:: csharp
-
-        using Microsoft.OpenApi.Models;
-        
-    .. code-block:: csharp
-
-        services.AddMvc();
-
-        services.AddSwaggerGen(c =>
-        {
-            c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Vejkkjkkrsion = "v1" });
-        });
+    .. literalinclude:: ..\..\test\WebSites\GettingStarted\Startup.cs
+        :language: csharp
+        :start-at: AddSwaggerGen(
+        :lines: 1-4
+        :dedent: 12
     
 3. Ensure your API actions and parameters are decorated with explicit "Http" and "From" bindings.
 
-    .. code-block:: csharp
+    .. literalinclude:: ..\..\test\WebSites\GettingStarted\Controllers\ProductsController.cs
+        :language: csharp
+        :start-at: [HttpPost]
+        :lines: 1-2
+        :dedent: 8
 
-        [HttpPost]
-        public void CreateProduct([FromBody]Product product)
-
-    .. code-block:: csharp
-
-        [HttpGet]
-        public IEnumerable<Product> SearchProducts([FromQuery]string keywords)
+    .. literalinclude:: ..\..\test\WebSites\GettingStarted\Controllers\ProductsController.cs
+        :language: csharp
+        :start-at: [HttpGet]
+        :lines: 1-2
+        :dedent: 8
 
     *NOTE: If you omit the explicit parameter bindings, the generator will describe them as "query" params by default.*
 
 4. In the ``Configure`` method, insert middleware to expose the generated Swagger as JSON endpoint(s)
 
-    .. code-block:: csharp
-
-        app.UseSwagger();
+    .. literalinclude:: ..\..\test\WebSites\GettingStarted\Startup.cs
+        :language: csharp
+        :start-at: UseSwagger(
+        :lines: 1
+        :dedent: 12
 
     *At this point, you can spin up your application and view the generated Swagger JSON at "/swagger/v1/swagger.json."*
 
-5. Optionally, insert the swagger-ui middleware if you want to expose interactive documentation, specifying the Swagger JSON endpoint(s) to power it from.
+5. Optionally, if you want to expose interactive documentation, insert the swagger-ui middleware, specifying the Swagger JSON endpoint(s) to power it from.
 
-    .. code-block:: csharp
-
-        app.UseSwaggerUI(c =>
-        {
-            c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-        });
+    .. literalinclude:: ..\..\test\WebSites\GettingStarted\Startup.cs
+        :language: csharp
+        :start-at: UseSwaggerUI(
+        :lines: 1-4
+        :dedent: 12
 
     *Now you can restart your application and check out the auto-generated, interactive docs at "/swagger".*
