@@ -26,7 +26,7 @@
     HOWEVER ... This example invokes the CLI DLL directly so that its source code can be tested during the Swashbuckle build process
   -->
 
-  <Target Name="SwaggerToFile" AfterTargets="AfterBuild">
+  <Target Name="SwaggerToFile" AfterTargets="AfterBuild_Never">
     <Exec Command="dotnet $(SolutionDir)/src/Swashbuckle.AspNetCore.Cli/bin/$(Configuration)/$(TargetFramework)/dotnet-swagger.dll tofile --host http://example.com --output wwwroot/api-docs/v1/swagger.json $(OutputPath)$(AssemblyName).dll v1" />
   </Target>
 
